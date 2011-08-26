@@ -4,5 +4,4 @@
 
 ;; I hate unicode substitutions
 (remove-hook 'coding-hook 'pretty-lambdas)
-(remove-hook 'espresso-mode-hook 'pretty-functions)
-(remove-hook 'js-mode-hook 'pretty-functions)
+(remove-hook 'esk-js-mode-hook 'pretty-functions)
