@@ -56,12 +56,15 @@
   (add-hook
    (intern (concat (symbol-name x) "-mode-hook")) 'run-coding-hook))
 
+(defun esk-pretty-fn ()
+  (font-lock-add-keywords
+   nil `(("(\\(fn\\>\\)"
+          (0 (progn (compose-region (match-beginning 1)
+                                    (match-end 1) "ƒ")
+                    nil))))))
+
 (eval-after-load 'clojure-mode
-  '(font-lock-add-keywords
-    'clojure-mode `(("(\\(fn\\>\\)"
-                     (0 (progn (compose-region (match-beginning 1)
-                                               (match-end 1) "ƒ")
-                               nil))))))
+  '(add-hook 'clojure-mode-hook 'esk-pretty-fn))
 
 (eval-after-load 'slime
   '(define-key slime-mode-map (kbd "C-c p")
